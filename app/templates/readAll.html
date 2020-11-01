@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="d-flex justify-content-center">
+        
+        <div class="form-group">
+                <h2>Users</h2>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    {% for user in lista %}
+                        <tr>
+                            <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <form action="{{ url_for('read') }}" method="POST">
+                <button type="submit" class="btn btn-primary" name="newSearch">New search</button>
+            </form>
+            
+        </div>
+        
+    </div>
+{% endblock %}

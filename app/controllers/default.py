@@ -57,6 +57,7 @@ def register():
             db.session.add(i)
             db.session.commit()
             flash("Registered user!")
+            return redirect(url_for("index"))
             
     return render_template('register.html',
                             form=form)
@@ -76,6 +77,7 @@ def delete():
             db.session.delete(r)
             db.session.commit()
             flash("Deleted user!")
+            return redirect(url_for("index"))
             
     return render_template('delete.html',
                             form=form)
@@ -124,19 +126,31 @@ def update(user):
 @app.route("/read", methods=['GET', 'POST'])
 def read():
 
-    form = ReadForm()
+    form = ReadForm()       
+
     if form.validate_on_submit():
+        
         user = User.query.filter_by(username=form.username.data).first()
         if user == None:
             flash("User does not exist!")
         else:
             
             #READ
-            r = User.query.filter_by(username=form.username.data).first()
-            print(r)
+            r = User.query.filter_by(username=form.username.data)
+            
+            return render_template('readAll.html',
+                            lista=r)
 
     return render_template('read.html',
                             form=form)
+
+@app.route("/readAll", methods=['GET', 'POST'])
+def readAll():
+    lista = User.query.all()
+           
+
+    return render_template('readAll.html',
+                            lista=lista)
                 
 @app.route("/monitorar", methods=['GET', 'POST'])
 def monitorar():
@@ -174,6 +188,7 @@ def registerReleased(username):
             db.session.add(i)
             db.session.commit()
             flash("Registered people!")
+            return redirect(url_for("index"))
 
     return render_template('registerReleased.html', 
                             form=form)

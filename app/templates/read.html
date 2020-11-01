@@ -3,16 +3,24 @@
 {% block content %}
 
 <div class="d-flex justify-content-center">
-    
-    <form action="" method="POST">
-        {{ form.csrf_token }}
-        <h2>Search</h2>
-        <div class="form-group">
-            <label>Username</label>
-            {{ form.username(class="form-control", placeholder="username") }}
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="form-group">
+        <form action="" method="POST">
+            {{ form.csrf_token }}
+            <h2>Search</h2>
+            <div class="form-group">
+                <label>Username</label>
+                {{ form.username(class="form-control", placeholder="username") }}
+            </div>
+            <button type="submit" class="btn btn-primary" name="sub">Submit</button>
+            
+        </form>
+        <br>
+        <form action="{{ url_for('readAll') }}" method="POST">
+            <button type="submit" class="btn btn-primary" name="all">All</button>
+        </form>
+    </div>
+
+        
 </div>
 
 {% endblock %}

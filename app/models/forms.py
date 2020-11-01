@@ -19,7 +19,7 @@ class DeleteForm(FlaskForm):
     username = StringField("username", validators=[DataRequired()])
 
 class ReadForm(FlaskForm):
-    username = StringField("username", validators=[DataRequired()])
+    username = StringField("username")
 
 class UpdateForm(FlaskForm):
     #username = StringField("username", validators=[DataRequired()])
