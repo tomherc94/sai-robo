@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    
+    <form action="" method="POST">
+        {{ form.csrf_token }}
+        <h2>Search</h2>
+        <div class="form-group">
+            <label>Username</label>
+            {{ form.username(class="form-control", placeholder="username") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
