@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="d-flex justify-content-center">
+        
+        <div class="form-group">
+                <h2>Released</h2>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">CPF</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    {% for released in lista %}
+                        <tr>
+                            <th scope="row">{{ released.id }}</th>
+                            <td>{{ released.name }}</td>
+                            <td>{{ released.cpf }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <form action="{{ url_for('readReleased', username=current_user.username) }}" method="POST">
+                <button type="submit" class="btn btn-primary" name="newSearch">New search</button>
+            </form>
+            
+        </div>
+        
+    </div>
+{% endblock %}

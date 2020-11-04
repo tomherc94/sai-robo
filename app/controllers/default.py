@@ -4,7 +4,7 @@ from app import app, db, lm
 from flask import render_template, flash, redirect, url_for
 from flask_login import login_user, logout_user
 
-from app.models.forms import LoginForm, RegisterForm, DeleteForm, ReadForm, UpdateForm, RegisterFormReleased
+from app.models.forms import LoginForm, RegisterForm, DeleteForm, ReadForm, UpdateForm, RegisterFormReleased, ReadFormReleased
 from app.models.tables import User, Released
 from app.IA import reconhecedor_fisherfaces
 
@@ -74,6 +74,12 @@ def delete():
         else:
             #DELETE
             r = User.query.filter_by(username=form.username.data).first()
+            released = Released.query.filter_by(user_id=r.id).first()
+            
+            while released != None:
+                db.session.delete(released)
+                released = Released.query.filter_by(user_id=r.id).first()
+
             db.session.delete(r)
             db.session.commit()
             flash("Deleted user!")
@@ -193,6 +199,38 @@ def registerReleased(username):
     return render_template('registerReleased.html', 
                             form=form)
     
+@app.route("/readReleased/<username>", methods=['GET', 'POST'])
+@app.route("/readReleased", methods=['GET', 'POST'])
+def readReleased(username):
 
+    form = ReadFormReleased()  
 
+    user = User.query.filter_by(username=username).first()     
 
+    if form.validate_on_submit():
+        
+        released = Released.query.filter_by(cpf=form.cpf.data).first()
+        if released == None or released.user_id != user.id:
+            flash("People does not exist!")
+        else:
+            
+            #READ
+            r = Released.query.filter_by(cpf=form.cpf.data)
+            
+            return render_template('readAllReleased.html',
+                            lista=r)
+
+    return render_template('readReleased.html',
+                            form=form)
+
+@app.route("/readAllReleased/<username>", methods=['GET', 'POST'])
+@app.route("/readAllReleased", methods=['GET', 'POST'])
+def readAllReleased(username):
+
+    user = User.query.filter_by(username=username).first()  
+
+    lista = Released.query.filter_by(user_id=user.id)
+           
+
+    return render_template('readAllReleased.html',
+                            lista=lista)

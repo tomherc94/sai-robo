@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="form-group">
+        <form action="" method="POST">
+            {{ form.csrf_token }}
+            <h2>Search</h2>
+            <div class="form-group">
+                <label>CPF</label>
+                {{ form.cpf(class="form-control", placeholder="cpf") }}
+            </div>
+            <button type="submit" class="btn btn-primary" name="sub">Submit</button>
+            
+        </form>
+        <br>
+        <form action="{{ url_for('readAllReleased', username=current_user.username) }}" method="POST">
+            <button type="submit" class="btn btn-primary" name="all">All</button>
+        </form>
+    </div>
+
+        
+</div>
+
+{% endblock %}

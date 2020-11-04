@@ -33,3 +33,6 @@ class RegisterFormReleased(FlaskForm):
     name = StringField("name", validators=[DataRequired()])
     cpf = StringField("cpf", validators=[DataRequired()])
 
+class ReadFormReleased(FlaskForm):
+    cpf = StringField("cpf")
+
