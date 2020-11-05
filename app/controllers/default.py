@@ -6,7 +6,7 @@ from flask_login import login_user, logout_user
 
 from app.models.forms import LoginForm, RegisterForm, DeleteForm, ReadForm, UpdateForm, RegisterFormReleased, ReadFormReleased
 from app.models.tables import User, Released
-from app.IA import reconhecedor_fisherfaces
+from app.IA import reconhecedor_fisherfaces, captura
 
 
 @lm.user_loader
@@ -75,7 +75,7 @@ def delete():
             #DELETE
             r = User.query.filter_by(username=form.username.data).first()
             released = Released.query.filter_by(user_id=r.id).first()
-            
+
             while released != None:
                 db.session.delete(released)
                 released = Released.query.filter_by(user_id=r.id).first()
@@ -193,8 +193,25 @@ def registerReleased(username):
             i = Released(form.name.data, form.cpf.data, user.id)
             db.session.add(i)
             db.session.commit()
-            flash("Registered people!")
-            return redirect(url_for("index"))
+            
+            released = Released.query.filter_by(cpf=form.cpf.data).first()
+
+            statusCaptura = captura.captura(released.id)
+
+            if statusCaptura == "ok":
+                flash("Registered people!")
+                return redirect(url_for("index"))
+            else:
+                db.session.delete(released)
+                db.session.commit()
+                flash("Record interrupted!")
+                return redirect(url_for("index"))
+                
+
+            
+
+            
+            
 
     return render_template('registerReleased.html', 
                             form=form)
