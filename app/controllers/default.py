@@ -1,12 +1,13 @@
 import app.IA
+import os
 
 from app import app, db, lm
 from flask import render_template, flash, redirect, url_for
 from flask_login import login_user, logout_user
 
-from app.models.forms import LoginForm, RegisterForm, DeleteForm, ReadForm, UpdateForm, RegisterFormReleased, ReadFormReleased
+from app.models.forms import LoginForm, RegisterForm, DeleteForm, ReadForm, UpdateForm, RegisterFormReleased, ReadFormReleased, DeleteFormReleased, UpdateFormReleased
 from app.models.tables import User, Released
-from app.IA import reconhecedor_fisherfaces, captura
+from app.IA import reconhecedor_fisherfaces, captura, treinamento
 
 
 @lm.user_loader
@@ -196,9 +197,12 @@ def registerReleased(username):
             
             released = Released.query.filter_by(cpf=form.cpf.data).first()
 
+            print(released.id)
+
             statusCaptura = captura.captura(released.id)
 
             if statusCaptura == "ok":
+                treinamento.treinamento()
                 flash("Registered people!")
                 return redirect(url_for("index"))
             else:
@@ -206,12 +210,6 @@ def registerReleased(username):
                 db.session.commit()
                 flash("Record interrupted!")
                 return redirect(url_for("index"))
-                
-
-            
-
-            
-            
 
     return render_template('registerReleased.html', 
                             form=form)
@@ -251,3 +249,41 @@ def readAllReleased(username):
 
     return render_template('readAllReleased.html',
                             lista=lista)
+
+@app.route("/deleteReleased/<username>", methods=['GET', 'POST'])
+@app.route("/deleteRelesead", methods=['GET','POST'])
+def deleteReleased(username):
+
+    form = DeleteFormReleased()
+
+    user = User.query.filter_by(username=username).first()
+
+    if form.validate_on_submit():
+        released = Released.query.filter_by(cpf=form.cpf.data).first()
+        if released == None:
+            flash("People does not exist!")
+            return redirect(url_for("index"))
+        else:
+            #DELETE
+            #r = Released.query.filter_by(cpf=form.cpf.data).first()
+            if released.user_id == user.id:
+                
+                amostra=1
+                while amostra<=25:
+
+                    os.remove("app/IA/fotos/pessoa." + str(released.id) + "." + str(amostra) + ".jpg")
+                    amostra+=1
+                        
+                db.session.delete(released)
+                db.session.commit()
+
+                treinamento.treinamento()
+
+                flash("Deleted people!")
+                return redirect(url_for("index"))
+            else:
+                flash("Not authorized! The person belongs to another administrator.")
+                return redirect(url_for("index"))
+            
+    return render_template('deleteReleased.html',
+                            form=form)

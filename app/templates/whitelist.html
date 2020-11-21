@@ -9,8 +9,8 @@
     <p class="lead">aqui você poderá administrar as pessoas autorizadas.</p>
     <p><a class="btn btn-lg btn-success" href="{{ url_for('registerReleased', username=current_user.username) }}" role="button">Create</a>
     <a class="btn btn-lg btn-info" href="{{ url_for('readReleased', username=current_user.username) }}" role="button">Read</a>
-    <a class="btn btn-lg btn-warning" href="{{ url_for('update') }}" role="button">Update</a>
-    <a class="btn btn-lg btn-danger" href="{{ url_for('delete') }}" role="button">Delete</a></p>
+    <a class="btn btn-lg btn-warning" href="{{ url_for('update', username=current_user.username) }}" role="button">Update</a>
+    <a class="btn btn-lg btn-danger" href="{{ url_for('deleteReleased', username=current_user.username) }}" role="button">Delete</a></p>
     
     </div>
 

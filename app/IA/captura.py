@@ -33,7 +33,7 @@ def captura(released_id):
                 if cv2.waitKey(1) & 0xFF ==ord('q'):
                     #if np.average(imagemCinza) > 110:
                     imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
-                    cv2.imwrite("fotos/pessoa." + str(id) + "." + str(amostra) + ".jpg", imagemFace)
+                    cv2.imwrite("app/IA/fotos/pessoa." + str(id) + "." + str(amostra) + ".jpg", imagemFace)
                     print("[foto " + str(amostra) + " capturada com sucesso]")
                     amostra += 1
             if cv2.waitKey(1) & 0xFF ==ord('e'):

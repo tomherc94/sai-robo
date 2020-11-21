@@ -22,9 +22,11 @@ def reconhecedorFisherFaces():
             if id == 1:
                 nome = 'Tomas'
             elif id == 2:
-                nome = 'Scarlett Johansson'
+                nome = 'Julio Barbosa'
             elif id == 3:
                 nome = 'Thaina Silva'
+            elif id == 19:
+                nome = 'Julio Barbosa'
             cv2.putText(imagem, nome, (x,y +(a+30)), font, 2, (0,0,255))
             cv2.putText(imagem, str(confianca), (x,y + (a+50)), font, 1, (0,0,255))
 

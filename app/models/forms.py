@@ -36,3 +36,11 @@ class RegisterFormReleased(FlaskForm):
 class ReadFormReleased(FlaskForm):
     cpf = StringField("cpf")
 
+class DeleteFormReleased(FlaskForm):
+    cpf = StringField("cpf", validators=[DataRequired()])
+
+class UpdateFormReleased(FlaskForm):
+    #username = StringField("username", validators=[DataRequired()])
+    name = StringField("name", validators=[DataRequired()])
+    cpf = StringField("cpf", validators=[DataRequired()])
+
