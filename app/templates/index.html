@@ -7,7 +7,7 @@
   {% if current_user.is_authenticated %}
 
     {% if current_user.username == 'admin' %}
-
+      
       <div class="jumbotron">
         <h1>Bem vindo {{ current_user.name }}</h1>
         <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
@@ -47,7 +47,7 @@
       <div class="jumbotron">
         <h1>Bem vindo {{ current_user.name }}</h1>
         <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="{{ url_for('monitorar') }}" role="button">Start monitoring</a></p>
+        <p><a class="btn btn-lg btn-success" href="{{ url_for('monitorar', username=current_user.username) }}" role="button">Start monitoring</a></p>
       </div>
 
       <div class="row marketing">
@@ -77,7 +77,7 @@
     {% endif %}
   {% else %}
 
-
+    
 
     <div class="jumbotron">
       <h1>Bem vindo ao SAI</h1>

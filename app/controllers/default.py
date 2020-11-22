@@ -57,6 +57,7 @@ def register():
             i = User(form.username.data, form.password.data, form.name.data, form.email.data)
             db.session.add(i)
             db.session.commit()
+
             flash("Registered user!")
             return redirect(url_for("index"))
             
@@ -159,12 +160,16 @@ def readAll():
     return render_template('readAll.html',
                             lista=lista)
                 
+@app.route("/monitorar/<username>", methods=['GET', 'POST'])
 @app.route("/monitorar", methods=['GET', 'POST'])
-def monitorar():
+def monitorar(username):
 
-    #executar o reconhecedor como Thread
     
-    reconhecedor_fisherfaces.reconhecedorFisherFaces()
+    user = User.query.filter_by(username=username).first()
+
+    lista = Released.query.filter_by(user_id=user.id)
+
+    reconhecedor_fisherfaces.reconhecedorFisherFaces(lista)
 
     return redirect(url_for("index"))
 
@@ -287,3 +292,47 @@ def deleteReleased(username):
             
     return render_template('deleteReleased.html',
                             form=form)
+
+@app.route("/updateReleased/<username>", defaults={"cpf":None}, methods=['GET', 'POST']) #limita os metodos da pagina
+@app.route("/updateReleased/<username>/<cpf>", methods=['GET', 'POST'])
+@app.route("/updateReleased", defaults={"cpf":None, "username":None}, methods=['GET', 'POST'])
+def updateReleased(cpf, username):
+
+    user = User.query.filter_by(username=username).first()
+    
+    if cpf != None:
+
+        form = UpdateFormReleased()
+        #form.username.data = user.username
+        if form.validate_on_submit():
+            
+            releasedMod = Released.query.filter_by(cpf=cpf).first()
+
+            if releasedMod.user_id == user.id:
+            
+                #UPDATE
+                releasedMod.name = form.name.data
+                releasedMod.cpf = form.cpf.data
+                
+
+                db.session.add(releasedMod)
+                db.session.commit()
+                flash("People updated!")
+                return redirect(url_for("index"))
+
+        return render_template('updateReleased.html',
+                                form=form)
+    else:
+
+        form = ReadFormReleased()
+        #form = UpdateForm()
+        if form.validate_on_submit():
+            released = Released.query.filter_by(cpf=form.cpf.data).first()
+            if released == None or released.user_id != user.id:
+                flash("Person does not exist or belongs to another administrator")
+                return redirect(url_for("index"))
+            else:
+                return redirect(url_for("updateReleased", cpf=released.cpf, username=username))
+                
+        return render_template('readReleased.html',
+                                form=form)

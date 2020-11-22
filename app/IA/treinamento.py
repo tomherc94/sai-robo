@@ -25,7 +25,7 @@ def treinamento():
 
     ids, faces = getImagemComId()
 
-    if len(ids) >= 2:
+    if len(ids) > 2:
         print("Treinando...")
         eigenface.train(faces, ids)
         eigenface.write('app/IA/classificadorEigen.yml')
