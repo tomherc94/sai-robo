@@ -23,7 +23,7 @@ def reconhecedorFisherFaces(lista):
                 if id == released.id:
                     nome = released.name
                     break
-
+            print("ACESSO LIBERADO!")
             cv2.putText(imagem, nome, (x,y +(a+30)), font, 2, (0,0,255))
             cv2.putText(imagem, str(confianca), (x,y + (a+50)), font, 1, (0,0,255))
 

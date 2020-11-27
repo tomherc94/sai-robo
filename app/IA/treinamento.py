@@ -7,7 +7,7 @@ def treinamento():
     #eigenface = cv2.face.EigenFaceRecognizer_create()
     fisherface = cv2.face.FisherFaceRecognizer_create()
     #lbph = cv2.face.LBPHFaceRecognizer_create()
-
+    qtd_release = 0
     def getImagemComId():
         caminhos = [os.path.join('app/IA/fotos', f) for f in os.listdir('app/IA/fotos')]
         #print(caminhos)
@@ -21,11 +21,14 @@ def treinamento():
             faces.append(imagemFace)
             #cv2.imshow("Face", imagemFace)
             #cv2.waitKey(10)
+        
+        
         return np.array(ids), faces
-
+    
     ids, faces = getImagemComId()
-
-    if len(ids) > 2:
+    qtd_release = len(ids)
+    print("QTD_RELEASE="+str(qtd_release))
+    if qtd_release >= 50:
         print("Treinando...")
         #eigenface.train(faces, ids)
         #eigenface.write('app/IA/classificadorEigen.yml')
