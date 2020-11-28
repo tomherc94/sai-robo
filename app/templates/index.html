@@ -10,7 +10,7 @@
       
       <div class="jumbotron">
         <h1>Bem vindo {{ current_user.name }}</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p class="lead">Agora você pode administrar seus gerentes de empresas.</p>
         <p><a class="btn btn-lg btn-success" href="{{ url_for('register') }}" role="button">Create</a>
         <a class="btn btn-lg btn-info" href="{{ url_for('read') }}" role="button">Read</a>
         <a class="btn btn-lg btn-warning" href="{{ url_for('update') }}" role="button">Update</a>
@@ -20,25 +20,26 @@
 
       <div class="row marketing">
         <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Segurança</h4>
+          <p>O SAI conta com algoritmos avançados de reconhecimento facial tornando seu estabelecimento muito mais seguro.</p>
+  
+          <h4>Distanciamento social</h4>
+          <p>Ajude na prevenção de contágio do COVID-19. Mantenha uma distância segura.</p>        
+  
+          <h4>Agilidade</h4>
+          <p>Acabe com as filas, faça o controle de acesso com mais fluidez.</p>
         </div>
-
+  
         <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Escalabilidade</h4>
+          <p>Tenha um perfil para cada filial, tornando os controles independentes.</p>
+  
+          <h4>Redução de custos</h4>
+          <p>Diminua a folha de pagamento automatizando o controle de acesso de sua empresa.</p>
+  
+          <h4>Flexibilidade</h4>
+          <p>Monte sua whitelist de acordo com as necessidades da sua empresa.</p>
+          
         </div>
       </div>
 
@@ -46,31 +47,32 @@
     {% else %}
       <div class="jumbotron">
         <h1>Bem vindo {{ current_user.name }}</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p class="lead">Agora você pode administrar suas pessoas autorizadas além de monitorar o ambiente em tempo real.</p>
         <p><a class="btn btn-lg btn-success" href="{{ url_for('monitorar', username=current_user.username) }}" role="button">Start monitoring</a></p>
       </div>
 
       <div class="row marketing">
         <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Segurança</h4>
+          <p>O SAI conta com algoritmos avançados de reconhecimento facial tornando seu estabelecimento muito mais seguro.</p>
+  
+          <h4>Distanciamento social</h4>
+          <p>Ajude na prevenção de contágio do COVID-19. Mantenha uma distância segura.</p>        
+  
+          <h4>Agilidade</h4>
+          <p>Acabe com as filas, faça o controle de acesso com mais fluidez.</p>
         </div>
-
+  
         <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Escalabilidade</h4>
+          <p>Tenha um perfil para cada filial, tornando os controles independentes.</p>
+  
+          <h4>Redução de custos</h4>
+          <p>Diminua a folha de pagamento automatizando o controle de acesso de sua empresa.</p>
+  
+          <h4>Flexibilidade</h4>
+          <p>Monte sua whitelist de acordo com as necessidades da sua empresa.</p>
+          
         </div>
       </div>
     
@@ -81,31 +83,32 @@
 
     <div class="jumbotron">
       <h1>Bem vindo ao SAI</h1>
-      <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p class="lead">Faça agora seu registro e tenha acesso a plataforma de acesso inteligente mais barata do Brasil.</p>
       <p><a class="btn btn-lg btn-success" href="{{ url_for('register') }}" role="button">Register today</a></p>
     </div>
 
     <div class="row marketing">
       <div class="col-lg-6">
-        <h4>Subheading</h4>
-        <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+        <h4>Segurança</h4>
+        <p>O SAI conta com algoritmos avançados de reconhecimento facial tornando seu estabelecimento muito mais seguro.</p>
 
-        <h4>Subheading</h4>
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+        <h4>Distanciamento social</h4>
+        <p>Ajude na prevenção de contágio do COVID-19. Mantenha uma distância segura.</p>        
 
-        <h4>Subheading</h4>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        <h4>Agilidade</h4>
+        <p>Acabe com as filas, faça o controle de acesso com mais fluidez.</p>
       </div>
 
       <div class="col-lg-6">
-        <h4>Subheading</h4>
-        <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+        <h4>Escalabilidade</h4>
+        <p>Tenha um perfil para cada filial, tornando os controles independentes.</p>
 
-        <h4>Subheading</h4>
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+        <h4>Redução de custos</h4>
+        <p>Diminua a folha de pagamento automatizando o controle de acesso de sua empresa.</p>
 
-        <h4>Subheading</h4>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        <h4>Flexibilidade</h4>
+        <p>Monte sua whitelist de acordo com as necessidades da sua empresa.</p>
+        
       </div>
     </div>
     

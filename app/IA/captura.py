@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import os
+import os, time
 
 def captura(released_id):
 
@@ -36,7 +36,6 @@ def captura(released_id):
                     imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
                     cv2.imwrite("app/IA/fotos/pessoa." + str(id) + "." + str(amostra) + ".jpg", imagemFace)
                     
-
                     cv2.putText(imagem, "[foto " + str(amostra) + " capturada com sucesso]", (x,y +(a+30)), font, 2, (0,0,255))
                     print("[foto " + str(amostra) + " capturada com sucesso]")
                     amostra += 1

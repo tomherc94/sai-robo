@@ -1,6 +1,7 @@
 """
 from pyfirmata import Arduino,util
 from pyfirmata import SERVO
+import time
 
 placa = Arduino("COM4")
 placa.digital[9].mode = SERVO
@@ -10,7 +11,7 @@ def liberacao():
     placa.digital[9].write(180)
     print("Liberado!")
 
-    time.sleep(5000) 
+    time.sleep(5) 
     
     placa.digital[8].write(0)
     placa.digital[9].write(0)
