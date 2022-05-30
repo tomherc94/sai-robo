@@ -19,6 +19,7 @@ def reconhecedorLbph(lista):
         for (x, y, l, a) in facesDetectadas:
             imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
             cv2.rectangle(imagem, (x, y), (x + l, y + a), (0,0,255), 2)
+            print(x,y)
             id, confianca = reconhecedor.predict(imagemFace)
             nome = ""
             
@@ -28,7 +29,7 @@ def reconhecedorLbph(lista):
 
                     #liberar acesso
                     #liberacao.liberacao()
-                    print("ACESSO LIBERADO! Nome: "+ nome)
+                    #print("ACESSO LIBERADO! Nome: "+ nome)
                     break
             
             cv2.putText(imagem, nome, (x,y +(a+30)), font, 2, (0,0,255))
