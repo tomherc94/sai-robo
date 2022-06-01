@@ -7,7 +7,7 @@ from flask_login import login_user, logout_user
 
 from app.models.forms import LoginForm, RegisterForm, DeleteForm, ReadForm, UpdateForm, RegisterFormReleased, ReadFormReleased, DeleteFormReleased, UpdateFormReleased
 from app.models.tables import User, Released
-from app.IA import reconhecedor_fisherfaces, reconhecedor_lbph, reconhecedor_lbph2, captura, treinamento
+from app.IA import reconhecedor_fisherfaces, reconhecedor_lbph, reconhecedor_lbph2, reconhecedor_lbph3, captura, treinamento
 
 
 @lm.user_loader
@@ -170,7 +170,7 @@ def monitorar(username):
     lista = Released.query.filter_by(user_id=user.id)
 
     #reconhecedor_fisherfaces.reconhecedorFisherFaces(lista)
-    reconhecedor_lbph2.reconhecedorLbph(lista)
+    reconhecedor_lbph3.reconhecedorLbph(lista)
     return redirect(url_for("index"))
 
 
